@@ -1,0 +1,28 @@
+class Solution {
+  public:
+  
+    void func (int ind , vector<int>& arr , int n , vector<int>& temp , int sum)
+    {
+        
+        if (ind == n)
+        {
+            temp.push_back(sum);
+            return;
+        }
+        //include the element 
+        func(ind+1,arr,n,temp,sum+arr[ind]);
+        func(ind+1,arr,n,temp,sum);
+        
+        
+    }
+  
+    vector<int> subsetSums(vector<int>& arr) {
+        // code here
+        int n = arr.size();
+        vector<int> temp ;
+        int sum =0;
+        func(0,arr,n,temp,sum);
+        return temp;
+        
+    }
+};
