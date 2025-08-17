@@ -1,0 +1,33 @@
+class Solution {
+public:
+
+
+    void findCombination(int ind , int k, int n , vector<int>& nums ,vector<vector<int>>& ans , vector<int>& temp)
+    {
+            //base case
+            if (n == 0 && temp.size()==k)
+            {
+                ans.push_back(temp);
+                return;
+            }
+            for (int i=ind;i<nums.size();i++)
+            {
+                if (nums[i] > n) break;
+                temp.push_back(nums[i]);
+                findCombination(i+1,k,n-nums[i],nums,ans,temp);
+                temp.pop_back();
+            } 
+    }
+
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>> ans;
+         vector<int> temp;;
+        vector<int> nums;;
+        for (int i=1;i<10;i++)
+        {
+            nums.push_back(i);
+        }
+        findCombination(0,k,n,nums,ans,temp);
+        return ans;
+    }
+};
