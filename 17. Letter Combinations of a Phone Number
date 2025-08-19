@@ -1,0 +1,40 @@
+class Solution {
+
+private:
+    void solve (int index , string temp , vector<string>& ans , string digits , string mapping[])
+    {
+        //base case 
+        if (index >= digits.length())
+        {
+            ans.push_back(temp);
+            return;
+        }
+
+        int number = digits[index]-'0';
+        string value = {mapping[number]};
+
+        for (int i=0;i<value.length();i++)
+        {
+            temp.push_back(value[i]);
+            solve(index+1 , temp , ans , digits , mapping);
+            temp.pop_back();
+        }
+
+    }
+
+public:
+    vector<string> letterCombinations(string digits) {
+        string temp;
+        vector<string> ans;
+        if (digits.length() == 0)
+        {
+            return ans;
+        }
+
+        int index = 0;
+        string mapping[10] = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        solve (index , temp , ans , digits , mapping);
+        return ans;
+
+    }
+};
